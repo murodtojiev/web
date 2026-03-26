@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tojiyev Murodbekning shaxsiy portfolio sahifasi.">
+
+    <meta property="og:title" content="Murodbek Tojiyev - Portfolio">
+    <meta property="og:description" content="TUIT talabasi, dasturlashga qiziquvchi.">
+    <meta property="og:image" content="https://github.com/murodtojiev.png">
+    <meta property="og:type" content="website">
+
+    <title>Murodbek - Chat</title>
+
+    <style>
+        :root {
+            --bg-1: #f9f4ea;
+            --bg-2: #dbeafe;
+            --card: rgba(255, 255, 255, 0.82);
+            --text: #18212f;
+            --muted: #526072;
+            --line: rgba(24, 33, 47, 0.08);
+            --shadow: 0 24px 80px rgba(24, 33, 47, 0.16);
+            --github: #1f2328;
+            --instagram: linear-gradient(135deg, #833ab4, #e1306c, #f77737);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(255, 214, 165, 0.55), transparent 28%),
+                linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        }
+
+        .card {
+            width: min(100%, 420px);
+            padding: 34px 28px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 28px;
+            text-align: center;
+            background: var(--card);
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow);
+            animation: float-in 0.7s ease-out;
+        }
+
+        .profile-wrap {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 18px;
+        }
+
+        .profile-wrap::after {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #60a5fa);
+            z-index: 0;
+            opacity: 0.25;
+            filter: blur(12px);
+        }
+
+        .profile-img {
+            position: relative;
+            z-index: 1;
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 4px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 24px rgba(24, 33, 47, 0.18);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #855f00;
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(30px, 6vw, 38px);
+            line-height: 1.05;
+        }
+
+        p {
+            margin: 0 auto 24px;
+            max-width: 32ch;
+            line-height: 1.7;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .buttons {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 12px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 12px 24px rgba(24, 33, 47, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+        }
+
+        .buttons a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px rgba(24, 33, 47, 0.18);
+            opacity: 0.96;
+        }
+
+        .buttons a:focus-visible {
+            outline: 3px solid rgba(96, 165, 250, 0.45);
+            outline-offset: 3px;
+        }
+
+        #github-btn {
+            background: var(--github);
+        }
+
+        #instagram-btn {
+            background: var(--instagram);
+        }
+
+        .footer-note {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .contact-box {
+            margin-top: 22px;
+            text-align: left;
+            padding: 18px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.68);
+        }
+
+        .contact-box h2 {
+            margin: 0 0 12px;
+            font-size: 20px;
+        }
+
+        .contact-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            margin-bottom: 14px;
+            padding: 12px 14px;
+            border: 1px solid rgba(24, 33, 47, 0.12);
+            border-radius: 14px;
+            font: inherit;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .contact-box textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .contact-box button {
+            width: 100%;
+            min-height: 48px;
+            border: 0;
+            border-radius: 14px;
+            font: inherit;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f59e0b, #2563eb);
+            box-shadow: 0 12px 24px rgba(24, 33, 47, 0.12);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .contact-box button:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .status {
+            min-height: 22px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        @keyframes float-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 28px 20px 22px;
+                border-radius: 24px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <div class="profile-wrap">
+            <img src="https://github.com/murodtojiev.png" alt="Murodbekning profil rasmi" class="profile-img">
+        </div>
+
+        <span class="eyebrow">TUIT Student</span>
+        <h1>Salom, men Murodbek</h1>
+
+        <p>
+            Ismim <strong>Tojiyev Murodbek</strong>. Hozirda TUIT talabasiman.
+            22-dekabr 2007-yilda tug‘ilganman. GitHub va Instagram orqali meni
+            yaqinroq bilib olishingiz mumkin.
+        </p>
+
+        <div class="buttons">
+            <a id="github-btn" href="https://github.com/murodtojiev" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a id="instagram-btn" href="https://www.instagram.com/murodtojiev_" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+
+        <section class="contact-box">
+            <h2>Menga yozing</h2>
+            <form id="contact-form">
+                <label for="name">Ismingiz</label>
+                <input id="name" name="name" type="text" placeholder="Ismingizni kiriting" required>
+
+                <label for="message">Xabaringiz</label>
+                <textarea id="message" name="message" placeholder="Xabaringizni yozing" required></textarea>
+
+                <button type="submit">Telegramga yuborish</button>
+                <div class="status" id="status"></div>
+            </form>
+        </section>
+
+        <div class="footer-note">
+            Dasturlashga qiziqaman va doim yangi narsalarni o‘rganishga intilaman.
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById("contact-form");
+        const status = document.getElementById("status");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const payload = {
+                name: formData.get("name"),
+                message: formData.get("message")
+            };
+
+            status.textContent = "Yuborilmoqda...";
+
+            try {
+                const response = await fetch("/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Noma'lum xatolik");
+                }
+
+                status.textContent = "Xabar muvaffaqiyatli yuborildi.";
+                form.reset();
+            } catch (error) {
+                status.textContent = error.message || "Xabar yuborilmadi.";
+            }
+        });
+    </script>
+</body>
+</html>
