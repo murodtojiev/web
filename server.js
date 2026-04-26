@@ -18,7 +18,7 @@ app.get("/", (_req, res) => {
 });
 
 app.post("/send", async (req, res) => {
-  const { name, message } = req.body;
+  const { name, message, telegram } = req.body;
 
   if (!TOKEN || !CHAT_ID) {
     return res.status(500).json({
@@ -26,16 +26,20 @@ app.post("/send", async (req, res) => {
     });
   }
 
-  if (!name?.trim() || !message?.trim()) {
+  if (!name?.trim() || !message?.trim() || !telegram?.trim()) {
     return res.status(400).json({
-      error: "Ism va xabar kiritilishi kerak.",
+      error: "Ism, xabar va Telegram username kiritilishi shart.",
     });
   }
+
+  const tgLink = telegram ? `\n👤 Telegram: https://t.me/${telegram.replace("@", "")}` : "";
+  const formattedText = `🚀 *Yangi xabar!*\n\n📝 *Ism:* ${name.trim()}\n💬 *Xabar:* ${message.trim()}${tgLink}`;
 
   try {
     await axios.post(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
       chat_id: CHAT_ID,
-      text: `Yangi xabar!\nIsm: ${name.trim()}\nXabar: ${message.trim()}`,
+      text: formattedText,
+      parse_mode: "Markdown",
     });
 
     res.json({ ok: true, message: "Yuborildi" });
